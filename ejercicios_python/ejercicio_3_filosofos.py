@@ -68,7 +68,18 @@ def filosofo(id, rondas=3):
         #
         # TODO: Adquiere los tenedores adyacentes de forma segura, invoca comer(id)
         # y libera los tenedores:
-        pass
+        #pass
+        if id == NUM_FILOSOFOS - 1:
+            tenedores[tenedor_der].acquire()
+            tenedores[tenedor_izq].acquire()
+        else:
+            tenedores[tenedor_izq].acquire()
+            tenedores[tenedor_der].acquire()
+
+        comer(id)
+
+        tenedores[tenedor_izq].release()
+        tenedores[tenedor_der].release()
         # =========================================================================
         # FIN TODO
         # =========================================================================
